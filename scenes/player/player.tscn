@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dor60bowv3eeo"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ltfv5"]
+top_radius = 0.4
+bottom_radius = 0.4
+height = 1.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ltfv5"]
+radius = 0.4
+height = 1.0
+
+[node name="Player" type="CharacterBody3D" unique_id=1032857751]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1119763265]
+mesh = SubResource("CylinderMesh_ltfv5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=89906974]
+shape = SubResource("CapsuleShape3D_ltfv5")

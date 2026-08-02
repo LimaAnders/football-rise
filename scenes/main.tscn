@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://co0fwliyuwwxs"]
 
+[ext_resource type="PackedScene" uid="uid://dor60bowv3eeo" path="res://scenes/player/player.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://bseyklvhb8osl" path="res://scripts/player/player.gd" id="2_0wfyh"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
 size = Vector3(105, 0.2, 68)
 
@@ -57,3 +60,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_o5qli")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ball" unique_id=1336567947]
 shape = SubResource("SphereShape3D_sgp6g")
+
+[node name="Player" parent="." unique_id=1032857751 instance=ExtResource("1_o5qli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0808935, 1.0179831, 2.629685)
+script = ExtResource("2_0wfyh")
