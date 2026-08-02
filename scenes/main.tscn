@@ -47,10 +47,6 @@ transform = Transform3D(0.70710677, -0.49999997, 0.49999997, 0, 0.70710677, 0.70
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=593340966]
 environment = SubResource("Environment_sgp6g")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=926247197]
-transform = Transform3D(0.99222827, -0.03094042, 0.120523125, 0, 0.96859217, 0.24865477, -0.124431245, -0.24672228, 0.9610645, 14.377397, 12.208286, 35.141006)
-current = true
-
 [node name="Ball" type="RigidBody3D" parent="." unique_id=402541198]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
@@ -64,3 +60,7 @@ shape = SubResource("SphereShape3D_sgp6g")
 [node name="Player" parent="." unique_id=1032857751 instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0808935, 1.0179831, 2.629685)
 script = ExtResource("2_0wfyh")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=926247197]
+transform = Transform3D(0.9997216, 0.002322223, -0.023481771, 0, 0.99514556, 0.09841462, 0.023596318, -0.09838723, 0.99486846, 1.6394615, 15.96487, 39.972248)
+current = true
