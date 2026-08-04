@@ -14,6 +14,9 @@ albedo_color = Color(0, 0.5411765, 0, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_sgp6g"]
 size = Vector3(105, 0.2, 68)
 
+[sub_resource type="BoxMesh" id="BoxMesh_jyhfs"]
+size = Vector3(9, 0.2, 4)
+
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_sgp6g"]
 
 [sub_resource type="Sky" id="Sky_o5qli"]
@@ -33,7 +36,7 @@ height = 0.44
 radius = 0.22
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ltfv5"]
-size = Vector3(105, 3, 1)
+size = Vector3(49, 4, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sugp2"]
 size = Vector3(1, 3, 68)
@@ -54,6 +57,26 @@ mesh = SubResource("BoxMesh_sgp6g")
 surface_material_override/0 = SubResource("StandardMaterial3D_sgp6g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Field" unique_id=1222372479]
+shape = SubResource("BoxShape3D_sgp6g")
+
+[node name="GoalFloorTop" type="StaticBody3D" parent="." unique_id=1368008850]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -36)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GoalFloorTop" unique_id=758284180]
+mesh = SubResource("BoxMesh_jyhfs")
+surface_material_override/0 = SubResource("StandardMaterial3D_sgp6g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GoalFloorTop" unique_id=2064560928]
+shape = SubResource("BoxShape3D_sgp6g")
+
+[node name="GoalFloorBottom" type="StaticBody3D" parent="." unique_id=145384569]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GoalFloorBottom" unique_id=336527281]
+mesh = SubResource("BoxMesh_jyhfs")
+surface_material_override/0 = SubResource("StandardMaterial3D_sgp6g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GoalFloorBottom" unique_id=805804042]
 shape = SubResource("BoxShape3D_sgp6g")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=58869234]
@@ -82,16 +105,28 @@ transform = Transform3D(0.99999666, -8.549246e-05, 0.0025800113, 0, 0.99945146, 
 current = true
 fov = 92.25236
 
-[node name="WallTop" type="StaticBody3D" parent="." unique_id=1598652495]
+[node name="WallTopLeft" type="StaticBody3D" parent="." unique_id=1598652495]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WallTop" unique_id=825781744]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -34)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallTopLeft" unique_id=825781744]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 2, -35.5)
 shape = SubResource("BoxShape3D_ltfv5")
 
-[node name="WallBottom" type="StaticBody3D" parent="." unique_id=1106816390]
+[node name="WallTopRight" type="StaticBody3D" parent="." unique_id=1868768017]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WallBottom" unique_id=1403185528]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 34)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallTopRight" unique_id=1243620254]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 2, -35.5)
+shape = SubResource("BoxShape3D_ltfv5")
+
+[node name="WallBottomLeft" type="StaticBody3D" parent="." unique_id=1106816390]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallBottomLeft" unique_id=1403185528]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 2, 35)
+shape = SubResource("BoxShape3D_ltfv5")
+
+[node name="WallBottomRight" type="StaticBody3D" parent="." unique_id=785292624]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallBottomRight" unique_id=1641588590]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 2, 35)
 shape = SubResource("BoxShape3D_ltfv5")
 
 [node name="WallLeft" type="StaticBody3D" parent="." unique_id=2019882579]
@@ -118,5 +153,11 @@ shape = SubResource("BoxShape3D_kwdsa")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -35)
 shape = SubResource("BoxShape3D_kwdsa")
 
+[node name="BallSpawn" type="Marker3D" parent="." unique_id=860992245]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="PlayerSpawn" type="Marker3D" parent="." unique_id=1744831901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
 [connection signal="body_entered" from="GoalBottom" to="." method="_on_goal_bottom_body_entered"]
-[connection signal="body_entered" from="GoalTop" to="." method="_on_goal_bottom_body_entered"]
+[connection signal="body_entered" from="GoalTop" to="." method="_on_goal_top_body_entered"]
