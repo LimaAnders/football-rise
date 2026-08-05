@@ -13,15 +13,15 @@ var score_bottom := 0
 
 var match_time := 90
 
+@onready var camera_rig = $CameraRig
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_score()
 	update_timer()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta):
 	pass
-
 func _on_goal_top_body_entered(body):
 	if body.name == "Ball":
 		score_bottom += 1

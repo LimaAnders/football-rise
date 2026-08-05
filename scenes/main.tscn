@@ -102,10 +102,14 @@ shape = SubResource("SphereShape3D_sgp6g")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0808935, 1.0179831, 2.629685)
 script = ExtResource("2_0wfyh")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=926247197]
-transform = Transform3D(0.99999666, -8.549246e-05, 0.0025800113, 0, 0.99945146, 0.033118293, -0.0025814273, -0.03311818, 0.9994481, 1.175911, 17.907562, 59.609337)
-current = true
-fov = 92.25236
+[node name="Player2" parent="." unique_id=517203299 instance=ExtResource("1_o5qli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -8)
+script = ExtResource("2_0wfyh")
+move_forward_action = "move2_forward"
+move_back_action = "move2_back"
+move_left_action = "move2_left"
+move_right_action = "move2_right"
+kick_action = "kick2"
 
 [node name="WallTopLeft" type="StaticBody3D" parent="." unique_id=1598652495]
 
@@ -185,6 +189,13 @@ autostart = true
 [node name="GoalTimer" type="Timer" parent="." unique_id=1974615692]
 wait_time = 2.0
 one_shot = true
+
+[node name="CameraRig" type="Node3D" parent="." unique_id=943667962]
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig" unique_id=926247197]
+transform = Transform3D(1, 3.4489622e-07, -3.3598045e-07, 0, 0.6977877, 0.71630466, 4.8149377e-07, -0.71630466, 0.6977877, -2.5079513, 37.911976, 41.82972)
+current = true
+fov = 92.25236
 
 [connection signal="body_entered" from="GoalBottom" to="." method="_on_goal_bottom_body_entered"]
 [connection signal="body_entered" from="GoalTop" to="." method="_on_goal_top_body_entered"]
