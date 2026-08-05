@@ -26,15 +26,21 @@ func _on_goal_top_body_entered(body):
 	if body.name == "Ball":
 		score_bottom += 1
 		update_score()
+
 		print("GOOOOL! Time de baixo marcou!")
-		reset_match()
+
+		$MatchTimer.stop()
+		$GoalTimer.start()
 
 func _on_goal_bottom_body_entered(body):
 	if body.name == "Ball":
 		score_top += 1
 		update_score()
+
 		print("GOOOOL! Time de cima marcou!")
-		reset_match()
+
+		$MatchTimer.stop()
+		$GoalTimer.start()
 	
 func reset_match():
 	# Reposiciona a bola
@@ -62,4 +68,9 @@ func _on_match_timer_timeout() -> void:
 		update_timer()
 	else:
 		$MatchTimer.stop()
-		print("Fim da partida!")# Replace with function body.
+		print("Fim da partida!")
+
+
+func _on_goal_timer_timeout() -> void:
+	reset_match()
+	$MatchTimer.start()

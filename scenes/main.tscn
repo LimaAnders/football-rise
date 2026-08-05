@@ -182,6 +182,11 @@ offset_bottom = 43.0
 [node name="MatchTimer" type="Timer" parent="." unique_id=663616659]
 autostart = true
 
+[node name="GoalTimer" type="Timer" parent="." unique_id=1974615692]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="body_entered" from="GoalBottom" to="." method="_on_goal_bottom_body_entered"]
 [connection signal="body_entered" from="GoalTop" to="." method="_on_goal_top_body_entered"]
 [connection signal="timeout" from="MatchTimer" to="." method="_on_match_timer_timeout"]
+[connection signal="timeout" from="GoalTimer" to="." method="_on_goal_timer_timeout"]
