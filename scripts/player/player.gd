@@ -9,14 +9,20 @@ const MAX_PASS_CHARGE := 1.0
 
 const MIN_KICK_FORCE := 10.0
 const MAX_KICK_FORCE := 20.0
-
 const MIN_PASS_FORCE := 5.0
 const MAX_PASS_FORCE := 12.0
+
+const MIN_CROSS_FORCE := 8.0
+const MAX_CROSS_FORCE := 22.0
+const MIN_CROSS_VERTICAL := 4.0
+const MAX_CROSS_VERTICAL := 10.0
+const MAX_CROSS_CHARGE := 1.0
 
 @onready var ball = $"../Ball"
 
 var pass_charge := 0.0
 var kick_charge := 0.0
+var cross_charge := 0.0
 
 @export var move_forward_action := "move_forward"
 @export var move_back_action := "move_back"
@@ -113,6 +119,47 @@ func _physics_process(delta):
 			)
 
 			ball.apply_central_impulse(dir * force)
+			
+			
+	# =========================
+	# CRUZAMENTO - L
+	# =========================
+		
+	# Carregar cruzamento
+	if Input.is_action_pressed(cross_action):
+		if ball.ball_owner == self:
+			cross_charge += delta
+			
+	# Soltar cruzamento
+	if Input.is_action_just_released(cross_action):
+		if ball.ball_owner == self:
+
+			var charge = min(cross_charge, MAX_CROSS_CHARGE)
+			cross_charge = 0.0
+
+			ball.state = ball.BallState.FREE
+			ball.ball_owner = null
+			ball.control_cooldown = 0.4
+
+			var cross_dir = transform.basis.z.normalized()
+
+			var force = lerp(
+				MIN_CROSS_FORCE,
+				MAX_CROSS_FORCE,
+				clamp(charge / MAX_CROSS_CHARGE, 0.0, 1.0)
+			)
+
+			var cross_direction = cross_dir * force
+
+			var vertical_force = lerp(
+				MIN_CROSS_VERTICAL,
+				MAX_CROSS_VERTICAL,
+				clamp(charge / MAX_CROSS_CHARGE, 0.0, 1.0)
+			)
+
+			cross_direction.y = vertical_force
+
+			ball.apply_central_impulse(cross_direction)
 
 	# =========================
 	# CONTROLE DA BOLA
