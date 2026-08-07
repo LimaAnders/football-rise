@@ -112,7 +112,6 @@ move_forward_action = "move2_forward"
 move_back_action = "move2_back"
 move_left_action = "move2_left"
 move_right_action = "move2_right"
-kick_action = "kick2"
 
 [node name="BallControlPoint" type="Marker3D" parent="Player2" unique_id=1050958345]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2)
@@ -169,7 +168,10 @@ shape = SubResource("BoxShape3D_kwdsa")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="PlayerSpawn" type="Marker3D" parent="." unique_id=1744831901]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 8)
+
+[node name="Player2Spawn" type="Marker3D" parent="." unique_id=1211828976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -8)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=591097967]
 

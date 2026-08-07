@@ -2,8 +2,10 @@ extends Node3D
 
 @onready var ball = $Ball
 @onready var player = $Player
+@onready var player2 = $Player2
 @onready var ball_spawn = $BallSpawn
 @onready var player_spawn = $PlayerSpawn
+@onready var player2_spawn = $Player2Spawn
 @onready var score_label = $UI/ScoreLabel
 
 var score_top := 0
@@ -22,6 +24,7 @@ func _ready():
 
 func _process(delta):
 	pass
+	
 func _on_goal_top_body_entered(body):
 	if body.name == "Ball":
 		score_bottom += 1
@@ -43,14 +46,19 @@ func _on_goal_bottom_body_entered(body):
 		$GoalTimer.start()
 	
 func reset_match():
-	# Reposiciona a bola
+	ball.state = ball.BallState.FREE
+	ball.ball_owner = null
+	ball.control_cooldown = 0.5
+
 	ball.linear_velocity = Vector3.ZERO
 	ball.angular_velocity = Vector3.ZERO
 	ball.global_position = ball_spawn.global_position
 
-	# Reposiciona o jogador
 	player.velocity = Vector3.ZERO
 	player.global_position = player_spawn.global_position
+
+	player2.velocity = Vector3.ZERO
+	player2.global_position = player2_spawn.global_position
 
 func update_score():
 	score_label.text = str(score_top) + " x " + str(score_bottom)
